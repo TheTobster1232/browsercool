@@ -1,0 +1,12 @@
+{
+  "name": "Windows-like Desktop",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "postCreateCommand": "bash startup.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": []
+    }
+  }
+}
