@@ -1,17 +1,19 @@
-export USER=root
-vncserver -kill :1 2>/dev/null
-vncserver :1 -geometry 1920x1080
-websockify --web=/usr/share/novnc/ 6080 localhost:5901
-
 #!/bin/bash
-vncserver :1
-websockify --web=/usr/share/novnc/ 6080 localhost:5901
 
-chmod +x startup.sh
-
+# Fix environment
 export USER=root
-echo "xfce4-session" > ~/.vnc/xstartup
-chmod +x ~/.vnc/xstartup
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+# Ensure XFCE session starts correctly
+echo "xfce4-session" > /root/.vnc/xstartup
+chmod +x /root/.vnc/xstartup
+
+# Kill any old VNC sessions
 vncserver -kill :1 2>/dev/null
-vncserver :1 -geometry 1920x1080
+
+# Start VNC with your chosen resolution
+vncserver :1 -geometry 1366x768
+
+# Start noVNC / Websockify
 websockify --web=/usr/share/novnc/ 6080 localhost:5901
